@@ -1,0 +1,106 @@
+{
+  "name": "@shopify/cli",
+  "version": "3.0.27",
+  "private": false,
+  "description": "A CLI tool to build for the Shopify platform",
+  "homepage": "https://github.com/shopify/cli#readme",
+  "bugs": {
+    "url": "https://github.com/Shopify/cli/issues"
+  },
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "keywords": [
+    "shopify",
+    "shopify-cli",
+    "shopify-partners"
+  ],
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "bin": {
+    "shopify": "./bin/run.js"
+  },
+  "files": [
+    "/bin/run.cmd",
+    "/bin/run.js",
+    "/dist",
+    "/oclif.manifest.json"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "@shopify:registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "clean": "shx rm -rf dist",
+    "build": "rimraf dist/ && tsc -b ./tsconfig.build.json",
+    "prepack": "cross-env NODE_ENV=production yarn run build && cp ../../README.md README.md",
+    "lint": "prettier -c src/** && eslint \"src/**/*.ts\"",
+    "lint:fix": "prettier -w src/** && eslint 'src/**/*.ts' --fix",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "tsc": "tsc --noEmit"
+  },
+  "eslintConfig": {
+    "extends": [
+      "../../.eslintrc.cjs"
+    ]
+  },
+  "dependencies": {
+    "@oclif/core": "^1.0",
+    "@oclif/plugin-help": "^5.1.12",
+    "@oclif/plugin-plugins": "^2.1.0",
+    "@shopify/plugin-ngrok": "^0.2.9",
+    "@shopify/cli-kit": "^3.0.27"
+  },
+  "devDependencies": {
+    "vitest": "^0.15.1"
+  },
+  "engine-strict": true,
+  "engines": {
+    "node": "^14.13.1 || ^16.0.0 || ^17.0.0 || ^18.0.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "oclif": {
+    "bin": "shopify",
+    "commands": "dist/cli/commands",
+    "plugins": [
+      "@shopify/app",
+      "@shopify/theme",
+      "@shopify/cli-hydrogen",
+      "@oclif/plugin-help",
+      "@shopify/plugin-ngrok"
+    ],
+    "scope": "shopify",
+    "topicSeparator": " ",
+    "topics": {
+      "hydrogen": {
+        "description": "Build Hydrogen storefronts"
+      },
+      "theme": {
+        "description": "Build Liquid themes"
+      },
+      "app": {
+        "description": "Build Shopify apps"
+      },
+      "auth": {
+        "description": "Auth operations"
+      }
+    },
+    "additionalHelpFlags": [
+      "-h"
+    ],
+    "hooks": {
+      "prerun": "dist/hooks/prerun",
+      "postrun": "dist/hooks/postrun"
+    }
+  }
+}

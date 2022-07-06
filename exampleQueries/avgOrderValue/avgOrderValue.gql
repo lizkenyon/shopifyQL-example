@@ -1,0 +1,29 @@
+ shopifyqlQuery(query: "FROM sales SHOW average_order_value OVER month since -1y UNTIL today") {
+    __typename
+    ... on TableResponse {
+      tableData {
+        rowData
+        columns {
+          # Elements in the columns section describe which column properties you want to return.
+          name
+          dataType
+          displayName
+        }
+      }
+    }
+    # parseErrors specifies that you want errors returned, if there were any, and which error properties you want to return.
+    parseErrors {
+      code
+      message
+      range {
+        start {
+          line
+          character
+        }
+        end {
+          line
+          character
+        }
+      }
+    }
+  }

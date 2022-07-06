@@ -1,0 +1,29 @@
+shopifyqlQuery(query: "FROM sales SHOW returned_item_quantity BY product_id SINCE -150d ORDER BY returned_item_quantity DESC") {
+    __typename
+    ... on TableResponse {
+      tableData {
+        rowData
+        columns {
+          # Elements in the columns section describe which column properties you want to return.
+          name
+          dataType
+          displayName
+        }
+      }
+    }
+    # parseErrors specifies that you want errors returned, if there were any, and which error properties you want to return.
+    parseErrors {
+      code
+      message
+      range {
+        start {
+          line
+          character
+        }
+        end {
+          line
+          character
+        }
+      }
+    }
+  }

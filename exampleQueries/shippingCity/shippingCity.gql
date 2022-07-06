@@ -1,0 +1,29 @@
+shopifyqlQuery(query: "FROM sales SHOW orders BY shipping_city SINCE -150d ORDER BY orders DESC LIMIT 10 ") {
+    __typename
+    ... on TableResponse {
+      tableData {
+        rowData
+        columns {
+          # Elements in the columns section describe which column properties you want to return.
+          name
+          dataType
+          displayName
+        }
+      }
+    }
+    # parseErrors specifies that you want errors returned, if there were any, and which error properties you want to return.
+    parseErrors {
+      code
+      message
+      range {
+        start {
+          line
+          character
+        }
+        end {
+          line
+          character
+        }
+      }
+    }
+  }
