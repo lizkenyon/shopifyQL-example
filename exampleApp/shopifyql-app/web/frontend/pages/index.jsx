@@ -10,12 +10,9 @@ import {
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 
-import { trophyImage } from "../assets";
-
-//import { ProductsCard } from "../components";
 import { OrderAnalytics } from "../components/OrdersAnalytics";
-import { ReturnedProducts } from "../components";
 import { MOST_SHIPPED_CITIES } from "../queries/MostShippedCities";
+import { RETURNED_PROUDCTS_QUERY } from "../queries/MostReturnedProducts";
 import  {ShopifyQLDataTable} from "../components/ShopifyQLDataTable";
 
 export default function HomePage() {
@@ -27,10 +24,10 @@ export default function HomePage() {
             <OrderAnalytics></OrderAnalytics>
         </Layout.Section>
         <Layout.Section oneHalf>
-          <ReturnedProducts></ReturnedProducts>
+          <ShopifyQLDataTable query={RETURNED_PROUDCTS_QUERY} title="Most Shipped Cities" queryKey="mostReturnedProducts"/>
         </Layout.Section>
         <Layout.Section oneHalf>
-          < ShopifyQLDataTable query={MOST_SHIPPED_CITIES} title="Most Shipped Cities" queryKey="mostShippedCities"/>
+          <ShopifyQLDataTable query={MOST_SHIPPED_CITIES} title="Most Shipped Cities" queryKey="mostShippedCities"/>
         </Layout.Section>
       </Layout>
     </Page>

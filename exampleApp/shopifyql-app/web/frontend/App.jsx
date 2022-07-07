@@ -2,12 +2,9 @@ import { BrowserRouter } from "react-router-dom";
 import { NavigationMenu } from "@shopify/app-bridge-react";
 import Routes from "./Routes";
 
-import {
-  AppBridgeProvider,
-  GraphQLProvider,
-  PolarisProvider,
-} from "./components";
-
+import {AppBridgeProvider} from "./components/providers/AppBridgeProvider";
+import {PolarisProvider} from "./components/providers/PolarisProvider";
+import {GraphQLProvider} from "./components/providers/GraphQLProvider";
 export default function App() {
   // Any .tsx or .jsx files in /pages will become a route
   // See documentation for <Routes /> for more info
