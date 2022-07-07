@@ -14,7 +14,9 @@ import { trophyImage } from "../assets";
 
 //import { ProductsCard } from "../components";
 import { OrderAnalytics } from "../components/OrdersAnalytics";
-import { MostShippedCities, ReturnedProducts } from "../components";
+import { ReturnedProducts } from "../components";
+import { MOST_SHIPPED_CITIES } from "../queries/MostShippedCities";
+import  {ShopifyQLDataTable} from "../components/ShopifyQLDataTable";
 
 export default function HomePage() {
   return (
@@ -28,7 +30,7 @@ export default function HomePage() {
           <ReturnedProducts></ReturnedProducts>
         </Layout.Section>
         <Layout.Section oneHalf>
-          < MostShippedCities></MostShippedCities>
+          < ShopifyQLDataTable query={MOST_SHIPPED_CITIES} title="Most Shipped Cities" queryKey="mostShippedCities"/>
         </Layout.Section>
       </Layout>
     </Page>
