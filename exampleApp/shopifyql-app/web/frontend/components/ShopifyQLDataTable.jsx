@@ -7,6 +7,7 @@ export function ShopifyQLDataTable ({query, title, queryKey}) {
         key: queryKey,
         query,
     });
+    console.log(response)
 
     if (response.status === "loading") {
         return <div>Loading...</div>;

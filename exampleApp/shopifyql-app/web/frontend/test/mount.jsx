@@ -4,7 +4,7 @@ import { PolarisTestProvider } from "@shopify/polaris";
 import { AppBridgeContext } from "@shopify/app-bridge-react/context";
 import { BrowserRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
-import { GraphQLProvider } from "../components";
+import { GraphQLProvider } from "../components/providers/GraphQLProvider";
 
 function createMockApp() {
   const localOrigin = "https://example.com";
