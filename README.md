@@ -4,7 +4,38 @@ The ShopifyQL enables you to write analytical queries to find insights in mercha
 You can use the ShopifyQL API to create reporting apps that provide business insights for merchants. The ShopifyQL API also enables you to export data from a store, so you can import the data into data warehouses
 
 ## ShopifyQL Examples
-In the [exampleQueries](/exampleQueries) directory you will find examples of ShopifyQL that can be run in [Shopify Notebooks](https://help.shopify.com/en/manual/reports-and-analytics/shopifyql). There is also exampeles of those same queries that can be excuted as API calls to the [Admin GraphQL API.](https://shopify.dev/api/admin-graphql)
+In the [exampleQueries](/exampleQueries) directory you will find examples of ShopifyQL that can be run in [Shopify Notebooks](https://help.shopify.com/en/manual/reports-and-analytics/shopifyql). There are examples of those same queries that can be excuted as API calls to the [Admin GraphQL API.](https://shopify.dev/api/admin-graphql)
+
+```sql
+##########################
+# ShopifyQL
+# Shows the city most shipped to
+# This can be run in Shopify Notebooks
+##########################
+
+FROM sales
+SHOW orders
+BY shipping_city
+SINCE -150d
+ORDER BY orders DESC
+LIMIT 10
+```
+```gql
+//This GQL query can be run on the Shopify Admin API
+shopifyqlQuery(query: "FROM sales SHOW orders BY shipping_city SINCE -150d ORDER BY orders DESC LIMIT 10 ") {
+    __typename
+    ... on TableResponse {
+      tableData {
+        rowData
+        columns {
+          # Elements in the columns section describe which column properties you want to return.
+          name
+          dataType
+          displayName
+        }
+      }
+    }
+```
 
 ## ShopifyQL Example App
 Developers can build reporting apps that consume the results of ShopifyQL queries. 
